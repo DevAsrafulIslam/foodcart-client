@@ -28,7 +28,7 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`foodcart-server.vercel.app/users/admin/${user._id}`, {
+    fetch(`https://foodcart-server.vercel.app/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
