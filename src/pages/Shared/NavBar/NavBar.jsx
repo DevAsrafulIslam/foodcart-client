@@ -9,7 +9,6 @@ const NavBar = () => {
   const [cart] = useCart();
   const navigation = useNavigate();
 
-  
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -32,8 +31,8 @@ const NavBar = () => {
       </li>
       <li className="">
         <Link className="btn" to="/dashboard/cart">
-            <FaShoppingCart />
-            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+          <FaShoppingCart />
+          <div className="badge badge-secondary">+{cart?.length || 0}</div>
         </Link>
       </li>
 
@@ -56,38 +55,47 @@ const NavBar = () => {
   return (
     <>
       <div className="navbar fixed  z-10 bg-slate-700 bg-opacity-90  text-white">
-        
         {/* dropdown menu */}
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div className="container mx-auto">
+          <div className="navbar-start ">
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost lg:hidden"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </div>
+              <ul
+                tabIndex={0}
+                className=" menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate rounded-box w-52"
+              >
+                {navOptions}
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className=" menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate rounded-box w-52"
-            >
+            <a className="btn text-xl pointer-events-none">
+              Ƒօօժ<p className="text-green-500 text-2xl gap-0">↻</p>ąɾէ
+            </a>
+          </div>
+          {/* menu items */}
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal pl-1 pr-1 pt-0 pb-0">
               {navOptions}
             </ul>
           </div>
-          <a className="btn text-xl pointer-events-none">Ƒօօժ<p className="text-green-500 text-2xl gap-0">↻</p>ąɾէ</a>
-        </div>
-        {/* menu items */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal pl-1 pr-1 pt-0 pb-0">{navOptions}</ul>
         </div>
       </div>
     </>

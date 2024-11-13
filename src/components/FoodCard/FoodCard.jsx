@@ -12,7 +12,6 @@ const FoodCard = ({ item }) => {
   const location = useLocation();
 
   const handleAddToCart = (item) => {
-    console.log(item);
     if (user && user.email) {
       const cartItem = {
         menuItemId: _id,
@@ -29,11 +28,11 @@ const FoodCard = ({ item }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            refetch(); //refetch cart to update the number of items in the cart
+            refetch();
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Food added on the cart",
+              title: "Food added to the cart",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -51,27 +50,28 @@ const FoodCard = ({ item }) => {
       });
     }
   };
+
   return (
-    <div>
-      <div className="card mx-auto w-96 glass">
-        <figure>
-          <img className="mt-2 rounded-md" src={image} alt="car!" />
-        </figure>
-        <p className="absolute right-0 mr-4 mt-4 px-4 py-1 bg-slate-900 text-white">
-          $ {price}
+    <div className="border mx-auto w-80 rounded-md overflow-hidden hover:scale-105 duration-500 shadow-lg">
+      <figure className="relative">
+        <img
+          className="w-full h-48 rounded-md object-cover"
+          src={image}
+          alt={name}
+        />
+        <p className="absolute top-2 right-2 bg-black text-white px-2 py-1 rounded">
+          ${price}
         </p>
-        <div className="card-body text-center">
-          <h2 className="text-2xl">{name}</h2>
-          <p>{recipe}</p>
-          <div className=" card-actions justify-center">
-            <button
-              onClick={() => handleAddToCart(item)}
-              className=" uppercase text-yellow-500 btn btn-outline border-0 bg-slate-50 border-b-4"
-            >
-              Add to cart
-            </button>
-          </div>
-        </div>
+      </figure>
+      <div className="p-4 text-center">
+        <h2 className="text-xl font-semibold">{name}</h2>
+        <p className="text-sm text-gray-600 my-2">{recipe}</p>
+        <button
+          onClick={() => handleAddToCart(item)}
+          className="mt-2 w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

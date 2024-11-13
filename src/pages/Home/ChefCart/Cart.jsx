@@ -12,7 +12,7 @@ const Cart = ({ cart }) => {
   });
   return (
     <div>
-      <div className="card w-96 glass">
+      <div className="card glass">
         <figure>
           <img src={cart.image} alt="car!" />
         </figure>
