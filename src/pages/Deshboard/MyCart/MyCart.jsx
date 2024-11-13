@@ -8,7 +8,7 @@ const MyCart = () => {
   const [cart, refetch] = useCart();
   //   how does reduce work
   const total = cart.reduce((sum, item) => item.price + sum, 0);
-
+  console.log(total, "Total Items Price");
   const handleDelete = (item) => {
     console.log(item, "Delete item");
     Swal.fire({
@@ -21,7 +21,7 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://foodcart-server.vercel.app/carts/${item._id}`, {
+        fetch(`http://localhost:5001/carts/${item._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

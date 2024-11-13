@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const { logOut } = useAuth();
 
   const axiosSecure = axios.create({
-    baseURL: "foodcart-server.vercel.app",
+    baseURL: "http://localhost:5001",
   });
 
   useEffect(() => {

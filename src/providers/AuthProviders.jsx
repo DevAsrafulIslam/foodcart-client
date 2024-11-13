@@ -58,7 +58,7 @@ const AuthProviders = ({ children }) => {
       // get and set token
       if (currentUser) {
         axios
-          .post("https://foodcart-server.vercel.app/jwt", {
+          .post("http://localhost:5001/jwt", {
             email: currentUser.email,
           })
           .then((data) => {

@@ -11,7 +11,7 @@ import "@smastrom/react-rating/style.css";
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("https://foodcart-server.vercel.app/reviews")
+    fetch("http://localhost:5001/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
