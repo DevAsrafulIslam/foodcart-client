@@ -72,9 +72,12 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
+    <form onSubmit={handleSubmit} className="grid gap-4">
       <div className="price-display">
-        <p>Total Price:${totalPrice}</p>
+        <p>
+          Total Price:{" "}
+          <span className="text-red-500 text-2xl">${totalPrice}</span>{" "}
+        </p>
       </div>
       <CardElement
         className=""
@@ -101,7 +104,9 @@ const CheckoutForm = () => {
         Pay
       </button>
       <p className="text-red-600">{error}</p>
-      <p className="text-green-600">Transaction Id: {transactionId}</p>
+      {transactionId && (
+        <p className="text-green-600">TRans ID: {transactionId}</p>
+      )}
     </form>
   );
 };
