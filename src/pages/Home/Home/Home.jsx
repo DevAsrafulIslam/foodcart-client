@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title >Ƒօօժ↻ąɾէ | Home</title>
+        <title>Ƒօօժ↻ąɾէ | Home</title>
       </Helmet>
       <Banner />
       <div className="container mx-auto">

@@ -10,18 +10,20 @@ const CheckoutForm = () => {
   const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const [axiosSecure] = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        // console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure[0]
+        .post("/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          // console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
   // console.log(totalPrice, "Total Price:");
 
@@ -64,15 +66,32 @@ const CheckoutForm = () => {
     } else {
       console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        alert("Payment successful");
+        // alert("Payment successful");
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        // now save payment in the database
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          date: new Date(), // utc data convert. use moment.js to
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuItemId),
+          status: "pending",
+        };
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("Payment save ", res.data);
+        refetch();
+        if (res.data?.paymentResult?.insertedId) {
+          alert("Payment inserted successfully");
+        }
       }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-4">
+    <form onSubmit={handleSubmit} className="grid gap-8">
       <div className="price-display">
         <p>
           Total Price:{" "}

@@ -52,23 +52,23 @@ const FoodCard = ({ item }) => {
   };
 
   return (
-    <div className="border mx-auto w-80 rounded-md overflow-hidden hover:scale-105 duration-500 shadow-lg">
+    <div className="border mx-auto w-full max-w-sm rounded-md overflow-hidden hover:scale-105 duration-500 shadow-lg">
       <figure className="relative">
         <img
-          className="w-full h-48 rounded-md object-cover"
+          className="w-full h-48 sm:h-56 md:h-60 rounded-t-md object-cover"
           src={image}
           alt={name}
         />
-        <p className="absolute top-2 right-2 bg-black text-white px-2 py-1 rounded">
+        <p className="absolute top-2 right-2 bg-black text-white px-3 py-1 text-sm rounded">
           ${price}
         </p>
       </figure>
       <div className="p-4 text-center">
-        <h2 className="text-xl font-semibold">{name}</h2>
-        <p className="text-sm text-gray-600 my-2">{recipe}</p>
+        <h2 className="text-lg sm:text-xl font-semibold">{name}</h2>
+        <p className="text-sm sm:text-base text-gray-600 my-2">{recipe}</p>
         <button
           onClick={() => handleAddToCart(item)}
-          className="mt-2 w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600"
+          className="mt-2 w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600 transition"
         >
           Add to Cart
         </button>

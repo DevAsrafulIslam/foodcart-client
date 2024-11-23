@@ -1,16 +1,15 @@
 import { loadStripe } from "@stripe/stripe-js";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
   return (
-    <div className="cart w-3/12 border p-6 rounded-lg">
-      <SectionTitle
-        heading="Payment"
-        subHeading="Please pay to eat"
-      ></SectionTitle>
+    <div className="card bg-base-100 w-96 p-4 shadow-xl">
+      <div className="card-body">
+        <h2 className="text-3xl text-center">Payment!</h2>
+        {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
+      </div>
       <div>
         <Elements stripe={stripePromise}>
           <CheckoutForm></CheckoutForm>
