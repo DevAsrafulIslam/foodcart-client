@@ -33,7 +33,7 @@ export default useCart;
 //     queryKey: ["carts", user?.email],
 //     queryFn: async () => {
 //       const res = await fetch(
-//         `http://localhost:5001/carts?email=${user.email}`,
+//         `https://foodcart-server.vercel.app/carts?email=${user.email}`,
 //         { headers: { authorization: `bearer ${token}` } }
 //       );
 //       return res.json();

@@ -2,7 +2,7 @@
 
 // const AllUsers = () => {
 //   const { data: users = [], refetch } = useQuery(["users"], async () => {
-//     const res = await fetch("http://localhost:5001/users");
+//     const res = await fetch("https://foodcart-server.vercel.app/users");
 //     return res.json();
 //   });
 //   return <div>{users.length}</div>;
@@ -28,7 +28,7 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5001/users/admin/${user._id}`, {
+    fetch(`https://foodcart-server.vercel.app/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -57,7 +57,7 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // fetch(`http://localhost:5001/users/${user._id}`, {
+        // fetch(`https://foodcart-server.vercel.app/users/${user._id}`, {
         //   method: "DELETE",
         // })
         //   .then((res) => res.json())

@@ -19,7 +19,7 @@ const SocialLogin = () => {
           email: loggedInUser.email,
         };
 
-        fetch("http://localhost:5001/users", {
+        fetch("https://foodcart-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
