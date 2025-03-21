@@ -1,5 +1,5 @@
 import { BiSolidCalendarEvent } from "react-icons/bi";
-import { FaCalendarAlt, FaHome, FaShoppingCart } from "react-icons/fa";
+import {  FaHome, FaShoppingCart } from "react-icons/fa";
 import { FaBagShopping, FaBook, FaUsers, FaUtensils } from "react-icons/fa6";
 import { GiWallet } from "react-icons/gi";
 import { IoMdMail, IoMdMenu } from "react-icons/io";
@@ -10,58 +10,64 @@ import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
-  // TODO Load data fron the server to have dynamic isAdmin base on data
-  // const isAdmin = true;
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="drawer lg:drawer-open max-w-screen-m mx-auto gap-8">
+    <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center  justify-center">
+      <div className="drawer-content flex flex-col p-4">
         {/* Page content here */}
+        <div className="flex justify-between items-center mb-4">
+          {/* <h2 className="text-2xl font-semibold">Dashboard</h2> */}
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-primary drawer-button lg:hidden"
+          >
+            <IoMdMenu className="text-xl" />
+          </label>
+        </div>
         <Outlet />
-        <label
-          htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
-        >
-          Open drawer
-        </label>
       </div>
-      <div className="drawer-side ">
+      <div className="drawer-side">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu text-base-content bg-slate-400 min-h-full w-80 p-4">
+        <ul className="menu p-4 w-80 min-h-full bg-slate-600 text-white">
           {/* Sidebar content here */}
+          <div className="text-center mb-6">
+            <h2 className="text-xl font-bold">Food Cart</h2>
+            <p className="text-sm">{isAdmin ? 'Admin Dashboard' : 'User Dashboard'}</p>
+          </div>
+          
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/adminhome">
+                <NavLink to="/dashboard/adminhome" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaHome /> Admin Home
                 </NavLink>
               </li>
 
               <li>
-                <NavLink to="/dashboard/reservations">
+                <NavLink to="/dashboard/reservations" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaUtensils /> Add Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/history">
+                <NavLink to="/dashboard/history" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaBook />
                   Manage Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/history">
+                <NavLink to="/dashboard/history" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaUsers />
                   Manage Bookings
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/allusers">
+                <NavLink to="/dashboard/allusers" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaUsers />
                   All Users
                 </NavLink>
@@ -70,18 +76,18 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="/dashboard/userhome">
+                <NavLink to="/dashboard/userhome" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaHome /> User Home
                 </NavLink>
               </li>
 
               <li>
-                <NavLink to="/dashboard/history">
+                <NavLink to="/dashboard/history" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <GiWallet /> Payment History
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/cart">
+                <NavLink to="/dashboard/cart" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaShoppingCart /> My Cart
                   <span>
                     <div className="badge badge-secondary">
@@ -91,36 +97,36 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/review">
+                <NavLink to="/dashboard/review" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <MdReviews /> Add Review
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/paymentHistory">
+                <NavLink to="/dashboard/paymentHistory" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <BiSolidCalendarEvent /> Payment History
                 </NavLink>
               </li>
             </>
           )}
 
-          <div className="divider"></div>
+          <div className="divider bg-slate-400 h-0.5 my-4"></div>
           <li>
-            <NavLink to="/">
+            <NavLink to="/" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
               <FaHome /> Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/menu">
+            <NavLink to="/menu" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
               <IoMdMenu /> Menu
             </NavLink>
           </li>
           <li>
-            <NavLink to="/shop">
+            <NavLink to="/shop" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
               <FaBagShopping /> Shop
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact">
+            <NavLink to="/contact" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
               <IoMdMail /> Contact
             </NavLink>
           </li>

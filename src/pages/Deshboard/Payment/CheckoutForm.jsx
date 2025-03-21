@@ -10,21 +10,21 @@ const CheckoutForm = () => {
   const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const axiosSecure = useAxiosSecure();
+  const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
   const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   useEffect(() => {
     if (totalPrice > 0) {
-      axiosSecure[0]
+      axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
           // console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
-  }, [axiosSecure, totalPrice]);
+  }, [ totalPrice]);
   // console.log(totalPrice, "Total Price:");
 
   const handleSubmit = async (event) => {
@@ -81,7 +81,7 @@ const CheckoutForm = () => {
           status: "pending",
         };
         const res = await axiosSecure.post("/payments", payment);
-        console.log("Payment save ", res.data);
+        console.log("Cheackout form ", res.data);
         refetch();
         if (res.data?.paymentResult?.insertedId) {
           alert("Payment inserted successfully");

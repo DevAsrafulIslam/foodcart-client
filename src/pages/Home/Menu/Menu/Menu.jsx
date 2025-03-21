@@ -20,7 +20,7 @@ const Menu = () => {
   return (
     <div>
       <Helmet>
-        <title>Ƒօօժ↻ąɾէ || Menu</title>
+        <title>FootCart || Menu</title>
       </Helmet>
       <Cover img={menuImg} title=" Our Menu"></Cover>
       {/* main cover */}

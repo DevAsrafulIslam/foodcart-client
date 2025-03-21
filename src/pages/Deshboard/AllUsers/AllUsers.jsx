@@ -78,12 +78,14 @@ const AllUsers = () => {
   return (
     <div className="w-full mr-8">
       <Helmet>
-        <title>Ƒօօժ↻ąɾէ || All Users</title>
+        <title>FootCart || All Users</title>
       </Helmet>
       <h3 className="text-3xl font-semibold my-4">
         Total Users: {users.length}
       </h3>
+
       {/* table */}
+      
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

@@ -38,7 +38,7 @@ const SignUp = () => {
   return (
     <>
       <Helmet>
-        <title>Ƒօօժ↻ąɾէ || Sign Up</title>
+        <title>FootCart || Sign Up</title>
       </Helmet>
       <button className="px-3 rounded-sm py-2 hover:bg-slate-600 bg-slate-500 absolute ">
         <Link to="/" className="flex text-white items-center gap-1">

@@ -42,7 +42,7 @@ const MyCart = () => {
   return (
     <div className="w-full mr-8">
       <Helmet>
-        <title>Ƒօօժ↻ąɾէ || My Cart</title>
+        <title>FootCart || My Cart</title>
       </Helmet>
       <div className="uppercase font-semibold h-[60px] flex justify-evenly">
         <h3 className="text-3xl">Total Items: {cart.length}</h3>
