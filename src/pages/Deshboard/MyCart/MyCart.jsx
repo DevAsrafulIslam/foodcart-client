@@ -12,13 +12,23 @@ const MyCart = () => {
   const handleDelete = (item) => {
     console.log(item, "Delete item");
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
+      title: 'Remove Item?',
+      text: `Are you sure you want to remove ${item.name} from your cart?`,
+      icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#FF7A00',
+      cancelButtonColor: '#718096',
+      confirmButtonText: 'Yes, remove it!',
+      cancelButtonText: 'Keep it',
+      background: '#fff',
+      borderRadius: '15px',
+      iconColor: '#FF7A00',
+      customClass: {
+        title: 'text-xl font-bold text-gray-800',
+        content: 'text-gray-600',
+        confirmButton: 'px-5 py-2 rounded-lg',
+        cancelButton: 'px-5 py-2 rounded-lg'
+      }
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`https://foodcart-server.vercel.app/carts/${item._id}`, {
@@ -29,9 +39,18 @@ const MyCart = () => {
             if (data.deletedCount > 0) {
               refetch();
               Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
+                title: 'Removed!',
+                text: `${item.name} has been removed from your cart.`,
+                icon: 'success',
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: '#fff',
+                iconColor: '#10B981',
+                customClass: {
+                  title: 'text-xl font-bold text-gray-800',
+                  content: 'text-gray-600'
+                }
               });
             }
           });

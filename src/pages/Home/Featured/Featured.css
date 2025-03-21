@@ -1,3 +1,13 @@
-.featured-item{
-    background-image: url("../../../assets//home/featured.jpg");
+.featured-item {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../assets/home/featured.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .featured-item {
+    background-attachment: scroll;
+  }
 }
