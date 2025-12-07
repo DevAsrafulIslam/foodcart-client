@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
-import Menu from "../pages/Home/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
@@ -12,6 +11,9 @@ import AllUsers from "../pages/Deshboard/AllUsers/AllUsers";
 import Payment from "../pages/Deshboard/Payment/Payment";
 import MyCart from "../pages/Deshboard/MyCart/MyCart";
 import PaymentHistory from "../pages/Deshboard/PaymentHistory/PaymentHistory";
+import AdminHome from "../pages/Deshboard/AdminHome/AdminHome";
+import UserHome from "../pages/Deshboard/UserHome/UserHome";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -23,16 +25,16 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "menu",
-        element: <Menu />,
-      },
-      {
         path: "order/:category",
         element: <Order />,
       },
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "admin",
+        element: <AdminHome />
       },
       {
         path: "/signup",
@@ -57,12 +59,21 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "userhome",
+        element:<UserHome/>,
+    },
+      {
         path: "cart",
         element: <MyCart />,
       },
       {
         path: "payment",
         element: <Payment />,
+      }, {
+        path: "adminHome",
+        element: <AdminRoute>
+          <AdminHome />
+        </AdminRoute>
       },
       {
         path: "paymentHistory",

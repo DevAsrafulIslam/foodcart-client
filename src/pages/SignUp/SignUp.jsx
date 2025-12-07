@@ -135,7 +135,7 @@ const SignUp = () => {
                   )}
                 </div>
                 
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Profile Photo URL</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -151,7 +151,7 @@ const SignUp = () => {
                   {errors.photoURL && (
                     <p className="text-red-500 text-xs mt-1">Photo URL is required</p>
                   )}
-                </div>
+                </div> */}
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Email Address</label>
@@ -183,8 +183,8 @@ const SignUp = () => {
                         required: true,
                         minLength: 6,
                         maxLength: 20,
-                        pattern:
-                          /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z])/,
+                        // pattern:
+                        //   /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z])/,
                       })}
                       placeholder="••••••••"
                       className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"

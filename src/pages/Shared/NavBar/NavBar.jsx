@@ -1,9 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
-import { FaShoppingCart, FaUserCircle, FaUtensils } from "react-icons/fa";
+import { FaShoppingCart, FaUtensils } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const NavBar = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isAdmin] = useAdmin();
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -42,10 +43,14 @@ const NavBar = () => {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/menu", label: "Our Menu" },
     { to: "/order/salad", label: "Order Food" },
-    { to: "/secret", label: "Secret" }
   ];
+  if (user && isAdmin) {
+    navLinks.push({ to: "/adminHome", label: "Dashboard" });
+  }
+  if (user && !isAdmin) {
+    navLinks.push({ to: "/userHome", label: "Dashboard" });
+  }
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900 shadow-lg py-2' : 'bg-gradient-to-r from-gray-900 to-gray-800 py-4'}`}>
@@ -67,18 +72,18 @@ const NavBar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
-              <Link 
-                key={link.to} 
-                to={link.to} 
+              <Link
+                key={link.to}
+                to={link.to}
                 className={`text-white hover:text-amber-400 transition-colors duration-300 ${isActive(link.to)}`}
               >
                 {link.label}
               </Link>
             ))}
-            
+
             {/* Cart */}
-            <Link 
-              to="/dashboard/cart" 
+            <Link
+              to="/dashboard/cart"
               className="relative p-2 text-white hover:text-amber-400 transition-colors duration-300"
             >
               <FaShoppingCart className="text-xl" />
@@ -88,23 +93,23 @@ const NavBar = () => {
                 </span>
               )}
             </Link>
-            
+
             {/* User section */}
             {user ? (
               <div className="flex items-center space-x-4">
                 <div className="relative group">
                   <div className="flex items-center space-x-2 cursor-pointer">
                     {user.photoURL ? (
-                      <img 
-                        src={user.photoURL} 
-                        alt={user.displayName || "User"} 
+                      <img
+                        src={user.photoURL}
+                        alt={user.displayName || "User"}
                         className="w-8 h-8 rounded-full border-2 border-amber-500"
                         onError={(e) => {
                           e.target.src = `https://ui-avatars.com/api/?name=${user.displayName || "User"}&background=f59e0b&color=fff`;
                         }}
                       />
                     ) : (
-                      <img 
+                      <img
                         src={`https://ui-avatars.com/api/?name=${user.displayName || "User"}&background=f59e0b&color=fff`}
                         alt={user.displayName || "User"}
                         className="w-8 h-8 rounded-full border-2 border-amber-500"
@@ -112,12 +117,12 @@ const NavBar = () => {
                     )}
                     {/* <span className="text-white text-sm hidden lg:block">{user.displayName || "User"}</span> */}
                   </div>
-                  
+
                   <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                     <Link to="/dashboard" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">Dashboard</Link>
                     <Link to="/profile" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">Profile</Link>
-                    <button 
-                      onClick={handleLogOut} 
+                    <button
+                      onClick={handleLogOut}
                       className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700"
                     >
                       Log Out
@@ -126,8 +131,8 @@ const NavBar = () => {
                 </div>
               </div>
             ) : (
-              <Link 
-                to="/login" 
+              <Link
+                to="/login"
                 className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-full transition-colors duration-300 text-sm"
               >
                 Login
@@ -137,8 +142,8 @@ const NavBar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <Link 
-              to="/dashboard/cart" 
+            <Link
+              to="/dashboard/cart"
               className="relative p-2 mr-2 text-white"
             >
               <FaShoppingCart className="text-xl" />
@@ -148,8 +153,8 @@ const NavBar = () => {
                 </span>
               )}
             </Link>
-            
-            <button 
+
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white focus:outline-none"
             >
@@ -167,22 +172,22 @@ const NavBar = () => {
       <div className={`md:hidden bg-gray-800 overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-screen py-4' : 'max-h-0'}`}>
         <div className="container mx-auto px-4 flex flex-col space-y-3">
           {navLinks.map((link) => (
-            <Link 
-              key={link.to} 
-              to={link.to} 
+            <Link
+              key={link.to}
+              to={link.to}
               className={`text-white hover:text-amber-400 py-2 transition-colors duration-300 ${isActive(link.to)}`}
               onClick={() => setIsMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          
+
           {user ? (
             <div className="pt-2 border-t border-gray-700">
               <div className="flex items-center space-x-3 mb-3">
                 {user.photoURL ? (
-                  <img 
-                    src={user.photoURL} 
+                  <img
+                    src={user.photoURL}
                     alt={user.displayName || "User"}
                     className="w-8 h-8 rounded-full border-2 border-amber-500"
                     onError={(e) => {
@@ -190,7 +195,7 @@ const NavBar = () => {
                     }}
                   />
                 ) : (
-                  <img 
+                  <img
                     src={`https://ui-avatars.com/api/?name=${user.displayName || "User"}&background=f59e0b&color=fff`}
                     alt={user.displayName || "User"}
                     className="w-8 h-8 rounded-full border-2 border-amber-500"
@@ -198,33 +203,33 @@ const NavBar = () => {
                 )}
                 <span className="text-white">{user.displayName || "User"}</span>
               </div>
-              <Link 
-                to="/dashboard" 
+              <Link
+                to="/dashboard"
                 className="block text-white hover:text-amber-400 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Dashboard
               </Link>
-              <Link 
-                to="/profile" 
+              <Link
+                to="/profile"
                 className="block text-white hover:text-amber-400 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Profile
               </Link>
-              <button 
+              <button
                 onClick={() => {
                   handleLogOut();
                   setIsMenuOpen(false);
-                }} 
+                }}
                 className="text-white hover:text-amber-400 py-2"
               >
                 Log Out
               </button>
             </div>
           ) : (
-            <Link 
-              to="/login" 
+            <Link
+              to="/login"
               className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-full transition-colors duration-300 text-sm inline-block"
               onClick={() => setIsMenuOpen(false)}
             >

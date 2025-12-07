@@ -1,3 +1,4 @@
+// Out menu item here
 const MenuItem = ({ item }) => {
   const { name, image, price, recipe } = item;
   return (

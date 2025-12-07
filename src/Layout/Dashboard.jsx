@@ -1,7 +1,6 @@
 import { BiSolidCalendarEvent } from "react-icons/bi";
 import {  FaHome, FaShoppingCart } from "react-icons/fa";
 import { FaBagShopping, FaBook, FaUsers, FaUtensils } from "react-icons/fa6";
-import { GiWallet } from "react-icons/gi";
 import { IoMdMail, IoMdMenu } from "react-icons/io";
 import { MdReviews } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
@@ -78,12 +77,6 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/userhome" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
                   <FaHome /> User Home
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/dashboard/history" className={({isActive}) => isActive ? "bg-slate-500" : ""}>
-                  <GiWallet /> Payment History
                 </NavLink>
               </li>
               <li>

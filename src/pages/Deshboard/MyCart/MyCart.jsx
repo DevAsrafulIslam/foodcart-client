@@ -10,24 +10,34 @@ const MyCart = () => {
   const total = cart.reduce((sum, item) => item.price + sum, 0);
   console.log(total, "Total Items Price");
   const handleDelete = (item) => {
-    console.log(item, "Delete item");
     Swal.fire({
-      title: 'Remove Item?',
-      text: `Are you sure you want to remove ${item.name} from your cart?`,
-      icon: 'question',
+      toast: true,
+      position: 'top-center',
+      title: 'Remove item?',
+      text: item.name,
+
       showCancelButton: true,
-      confirmButtonColor: '#FF7A00',
-      cancelButtonColor: '#718096',
-      confirmButtonText: 'Yes, remove it!',
-      cancelButtonText: 'Keep it',
-      background: '#fff',
-      borderRadius: '15px',
-      iconColor: '#FF7A00',
+      confirmButtonColor: '#38BDF8',
+      cancelButtonColor: '#1E293B',
+      confirmButtonText: 'Remove',
+      cancelButtonText: 'Cancel',
+      background: '#1E293B',
+      color: '#fff',
+      width: '280px',
+      padding: '0.75rem',
+      showClass: {
+        popup: 'animate__animated animate__fadeInRight animate__faster'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutRight animate__faster'
+      },
       customClass: {
-        title: 'text-xl font-bold text-gray-800',
-        content: 'text-gray-600',
-        confirmButton: 'px-5 py-2 rounded-lg',
-        cancelButton: 'px-5 py-2 rounded-lg'
+        popup: 'rounded-xl border border-[#334155]',
+        title: 'text-sm font-medium text-[#38BDF8]',
+        htmlContainer: 'text-xs text-gray-300',
+        actions: 'gap-2',
+        confirmButton: 'px-3 py-1 text-sm rounded-lg font-medium',
+        cancelButton: 'px-3 py-1 text-sm rounded-lg font-medium border border-[#334155]'
       }
     }).then((result) => {
       if (result.isConfirmed) {
@@ -39,17 +49,26 @@ const MyCart = () => {
             if (data.deletedCount > 0) {
               refetch();
               Swal.fire({
-                title: 'Removed!',
-                text: `${item.name} has been removed from your cart.`,
+                toast: true,
+                position: 'top-end',
                 icon: 'success',
-                timer: 2000,
-                timerProgressBar: true,
+                title: 'Item removed',
                 showConfirmButton: false,
-                background: '#fff',
-                iconColor: '#10B981',
+                timer: 1500,
+                timerProgressBar: true,
+                width: '200px',
+                padding: '0.5rem',
+                background: '#1E293B',
+                color: '#fff',
+                showClass: {
+                  popup: 'animate__animated animate__fadeInRight animate__faster'
+                },
+                hideClass: {
+                  popup: 'animate__animated animate__fadeOutRight animate__faster'
+                },
                 customClass: {
-                  title: 'text-xl font-bold text-gray-800',
-                  content: 'text-gray-600'
+                  popup: 'rounded-xl border border-[#334155]',
+                  title: 'text-xs font-medium'
                 }
               });
             }
