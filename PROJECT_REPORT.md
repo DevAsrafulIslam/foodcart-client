@@ -354,15 +354,27 @@ erDiagram
 
 ## Screenshots & UI Design
 
-> [!NOTE]
-> Add actual screenshots of your application here. Take screenshots of:
->
 > - Home page
+>   <img width="1512" height="776" alt="Screenshot 2026-01-12 at 8 23 44 PM" src="https://github.com/user-attachments/assets/582ddb84-46e3-495e-bb5b-397290fa7144" />
+
 > - Login/Signup pages
+>   <img width="1512" height="836" alt="Screenshot 2026-01-12 at 8 00 25 PM" src="https://github.com/user-attachments/assets/28e26e39-c854-4584-87c6-543f6ba6af2c" />
+
 > - Menu browsing
+>   <img width="1475" height="828" alt="Screenshot 2026-01-12 at 8 35 04 PM" src="https://github.com/user-attachments/assets/da71cf8e-b73c-4f99-a038-76d8fc11333a" />
+
 > - Shopping cart
+>  <img width="1512" height="837" alt="Screenshot 2026-01-10 at 8 11 04 PM" src="https://github.com/user-attachments/assets/97b233a0-4899-4a1e-8cf8-2da0eb8e3390" />
+
 > - Payment checkout
+>   <img width="845" height="531" alt="Screenshot 2026-01-12 at 8 27 01 PM" src="https://github.com/user-attachments/assets/0425812f-ed4f-4a3e-92da-b7828b459b3d" />
+> - Payment History
+>   <img width="1512" height="757" alt="Screenshot 2026-01-12 at 8 27 28 PM" src="https://github.com/user-attachments/assets/6ed914ee-2e04-4b82-a477-97d2afea0d98" />
+
 > - User dashboard
+>   <img width="1512" height="611" alt="Screenshot 2026-01-12 at 8 38 21 PM" src="https://github.com/user-attachments/assets/0d098252-a8fc-4a77-9dbd-9766eb27adc3" />
+
+
 > - Admin dashboard
 
 ### UI Design Principles
