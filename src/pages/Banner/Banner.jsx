@@ -12,9 +12,9 @@ const bannerImages = [
 
 const Banner = () => {
   return (
-    <Carousel 
-      className="text-center" 
-      autoPlay 
+    <Carousel
+      className="text-center"
+      autoPlay
       infiniteLoop
       showStatus={false}
       showThumbs={false}
@@ -22,9 +22,9 @@ const Banner = () => {
     >
       {/* Map through the bannerImages array to create carousel items */}
       {bannerImages.map((image, index) => (
-        <div key={index} className="relative h-[600px]">
-          <img 
-            src={image} 
+        <div key={index} className="relative h-[600px] mt-16">
+          <img
+            src={image}
             alt={`Premium food ${index + 1}`}
             className="w-full h-full object-cover"
           />

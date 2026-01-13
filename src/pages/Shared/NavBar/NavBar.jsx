@@ -17,7 +17,7 @@ const NavBar = () => {
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if(window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -45,11 +45,11 @@ const NavBar = () => {
     { to: "/", label: "Home" },
     { to: "/order/salad", label: "Order Food" },
   ];
-  if (user && isAdmin) {
+  if(user && isAdmin) {
     navLinks.push({ to: "/adminHome", label: "Dashboard" });
   }
-  if (user && !isAdmin) {
-    navLinks.push({ to: "/userHome", label: "Dashboard" });
+  if(user && !isAdmin) {
+    navLinks.push({ to: "/userhome", label: "Dashboard" });
   }
 
   return (

@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
-  loadCaptchaEnginge,
+  // loadCaptchaEnginge,
   // LoadCanvasTemplate,
   // validateCaptcha,
 } from "react-simple-captcha";
@@ -17,7 +17,8 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from || { pathname: "/" };
+  // const from = location.state?.from || { pathname: "/" };
+  const from = location.state?.from?.pathname || "/";
 
   // useEffect(() => {
   //   loadCaptchaEnginge(6);
@@ -69,15 +70,6 @@ const Login = () => {
         });
       });
   };
-
-  // const handleValidateCaptcha = (e) => {
-  //   const user_captcha_value = e.target.value;
-  //   if (validateCaptcha(user_captcha_value)) {
-  //     setDisable(false);
-  //   } else {
-  //     setDisable(true);
-  //   }
-  // };
 
   return (
     <>
@@ -189,7 +181,7 @@ const Login = () => {
 
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
-                  Don't have an account?{" "}
+                  Donot have an account?{" "}
                   <Link
                     to="/signup"
                     className="text-amber-600 hover:text-amber-800 font-medium"

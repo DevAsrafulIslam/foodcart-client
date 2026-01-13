@@ -6,10 +6,10 @@ const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const [isAdmin, isAdminLoading] = useAdmin();
   const location = useLocation();
-  if (loading || isAdminLoading) {
+  if(loading || isAdminLoading) {
     return <process className="progress w-56"></process>;
   }
-  if (user && isAdmin) {
+  if(user && isAdmin) {
     return children;
   }
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
