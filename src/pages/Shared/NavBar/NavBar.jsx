@@ -17,15 +17,15 @@ const NavBar = () => {
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY > 50) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLogOut = () => {
@@ -38,22 +38,24 @@ const NavBar = () => {
 
   // Check if link is active
   const isActive = (path) => {
-    return location.pathname === path ? 'text-amber-400' : '';
+    return location.pathname === path ? "text-amber-400" : "";
   };
 
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/order/salad", label: "Order Food" },
   ];
-  if(user && isAdmin) {
+  if (user && isAdmin) {
     navLinks.push({ to: "/adminHome", label: "Dashboard" });
   }
-  if(user && !isAdmin) {
-    navLinks.push({ to: "/userhome", label: "Dashboard" });
+  if (user && !isAdmin) {
+    navLinks.push({ to: "/dashboard", label: "Dashboard" });
   }
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900 shadow-lg py-2' : 'bg-gradient-to-r from-gray-900 to-gray-800 py-4'}`}>
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-gray-900 shadow-lg py-2" : "bg-gradient-to-r from-gray-900 to-gray-800 py-4"}`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Updated Logo */}
@@ -65,7 +67,9 @@ const NavBar = () => {
               <span className="text-xl md:text-2xl font-bold text-white leading-tight">
                 Halal<span className="text-amber-500">Food</span>
               </span>
-              <span className="text-xs text-gray-400 -mt-1">Premium Cuisine</span>
+              <span className="text-xs text-gray-400 -mt-1">
+                Premium Cuisine
+              </span>
             </div>
           </Link>
 
@@ -119,8 +123,18 @@ const NavBar = () => {
                   </div>
 
                   <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                    <Link to="/dashboard" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">Dashboard</Link>
-                    <Link to="/profile" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">Profile</Link>
+                    <Link
+                      to="/dashboard"
+                      className="block px-4 py-2 text-sm text-white hover:bg-gray-700"
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-white hover:bg-gray-700"
+                    >
+                      Profile
+                    </Link>
                     <button
                       onClick={handleLogOut}
                       className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700"
@@ -142,10 +156,7 @@ const NavBar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <Link
-              to="/dashboard/cart"
-              className="relative p-2 mr-2 text-white"
-            >
+            <Link to="/dashboard/cart" className="relative p-2 mr-2 text-white">
               <FaShoppingCart className="text-xl" />
               {cart?.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -169,7 +180,9 @@ const NavBar = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden bg-gray-800 overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-screen py-4' : 'max-h-0'}`}>
+      <div
+        className={`md:hidden bg-gray-800 overflow-hidden transition-all duration-300 ${isMenuOpen ? "max-h-screen py-4" : "max-h-0"}`}
+      >
         <div className="container mx-auto px-4 flex flex-col space-y-3">
           {navLinks.map((link) => (
             <Link
